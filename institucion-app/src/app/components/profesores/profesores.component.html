@@ -1,0 +1,50 @@
+<div class="container my-5">
+    <h2>Lista de profesores</h2>
+    <div class="row">
+        <div class="col">
+            <profesor-form
+                (newProfesorEvent)="agregarProfesor($event)"
+                [profesor]="profesorSeleccionado">
+            </profesor-form>
+        </div>
+        <div class="col">
+            @if (profesores.length > 0) {
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Actualizar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (profesor of profesores; track $index) {
+                    <tr>
+                        <td>{{ profesor.idProfesor }}</td>
+                        <td>{{ profesor.nombreProfesor }}</td>
+                        <td>
+                            <button
+                                (click)="seleccionarProfesor(profesor)"
+                                class="btn btn-sm btn-secondary">
+                                actualizar
+                            </button>
+                        </td>
+                        <td>
+                            <button
+                                (click)="eliminarProfesor(profesor.idProfesor)"
+                                class="btn btn-sm btn-danger">
+                                eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            } @else {
+                <div class="alert alert-info">Lo sentimos no hay registros en el sistema</div>
+            }
+        </div>
+    </div>
+</div>
+

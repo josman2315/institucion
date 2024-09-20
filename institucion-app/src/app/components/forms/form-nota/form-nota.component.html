@@ -1,0 +1,90 @@
+<form (ngSubmit)="onSubmit(notaForm)" #notaForm="ngForm">
+    <div>
+        <input 
+        class="form-control my-2" 
+        placeholder="Nombre nota"
+        name="name"
+        [(ngModel)]="nota.nombreNota"
+        #name="ngModel"
+        required
+        minlength="5"
+        >
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors!['required']">
+                El nombre es requerido!
+            </div>
+            <div *ngIf="name.errors!['minlength']">
+                El nombre debe tener al menos 5 caracteres!
+            </div>
+        </div>
+    </div>
+    <div>
+        <input 
+        type="number"
+        class="form-control my-2" 
+        placeholder="Valor"
+        name="valor"
+        [(ngModel)]="nota.valor"
+        #valor="ngModel"
+        required
+        >
+        <div *ngIf="valor.invalid && (valor.dirty || valor.touched)" class="alert alert-danger">
+            @if (valor.errors!['required']) {
+                <div>
+                    El valor es requerido
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <input 
+        type="number"
+        class="form-control my-2" 
+        placeholder="Id profesor"
+        name="idProfesor"
+        [(ngModel)]="nota.profesor.idProfesor"
+        #idProfesor="ngModel"
+        required
+        >
+        <div *ngIf="idProfesor.invalid && (idProfesor.dirty || idProfesor.touched)" class="alert alert-danger">
+            @if (idProfesor.errors!['required']) {
+                <div>
+                    Id profesor es requerido
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <input 
+        type="number"
+        class="form-control my-2" 
+        placeholder="Id estudiante"
+        name="idEstudiante"
+        [(ngModel)]="nota.estudiante.idEstudiante"
+        #idEstudiante="ngModel"
+        required 
+        >
+        <div *ngIf="idEstudiante.invalid && (idEstudiante.dirty || idEstudiante.touched)" class="alert alert-danger">
+            @if (idEstudiante.errors!['required']) {
+                <div>
+                    Id estudiante es requerido
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <button
+            [disabled]="!notaForm.valid"
+            type="submit"
+            class="btn btn-primary my-2">
+            {{nota.idNota > 0 ?'Actualizar': 'Crear'}}
+        </button>
+        <button 
+            type="button" 
+            class="btn btn-success my-2 mx-2"
+            (click)="clean()">
+            Limpiar
+        </button>
+    </div>
+</form>
+

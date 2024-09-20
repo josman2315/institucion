@@ -1,0 +1,55 @@
+<div class="container my-5">
+    <h2>Lista de notas</h2>
+    <div class="row">
+        <div class="col">
+            <notas-form
+                (newNotaEvent)="agregarNota($event)"
+                [nota]="notaSeleccionada">
+            </notas-form>
+        </div>
+        <div class="col">
+            @if (notas.length > 0) {
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Valor</th>
+                        <th>Id profesor</th>
+                        <th>Id estudiante</th> 
+                        <th>Actualizar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (nota of notas; track $index) {
+                    <tr>
+                        <td>{{ nota.idNota }}</td>
+                        <td>{{ nota.nombreNota }}</td>
+                        <td>{{ nota.valor }}</td>
+                        <td>{{ nota.profesor.idProfesor}}</td>
+                        <td>{{ nota.estudiante.idEstudiante }}</td>
+                        <td>
+                            <button
+                                (click)="seleccionarNota(nota)"
+                                class="btn btn-sm btn-secondary">
+                                actualizar
+                            </button>
+                        </td>
+                        <td>
+                            <button
+                                (click)="eliminarNota(nota.idNota)"
+                                class="btn btn-sm btn-danger">
+                                eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            } @else {
+                <div class="alert alert-info">Lo sentimos no hay registros en el sistema</div>
+            }
+        </div>
+    </div>
+</div>

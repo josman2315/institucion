@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: institucion-crud
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/institucion_db?serverTimezone=UTC
+    username: root
+    password: admin
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+server:
+  port: 8080
